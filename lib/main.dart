@@ -1,4 +1,6 @@
 import 'package:animation_last_lesson/pages/home_page/home_page.dart';
+import 'package:animation_last_lesson/pages/moon_page/moon_page.dart';
+import 'package:animation_last_lesson/pages/moon_page_two/moon_page_two.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,8 +20,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {HomePage.path: (context) => const HomePage()},
-      initialRoute: HomePage.path,
+      routes: {
+        HomePage.path: (context) => const HomePage(),
+        MoonPage.path: (context) => const MoonPage(),
+        MoonPageTwo.path: (context) => const MoonPageTwo()
+      },
+      initialRoute: MoonPageTwo.path,
     );
   }
 }
