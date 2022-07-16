@@ -1,3 +1,8 @@
+/*
+Created by Axmadjon Isaqov on 16:57:04 16.07.2022
+© 2022 
+*/
+///[@axi_dev]
 import 'package:animation_last_lesson/pages/home_page/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 
