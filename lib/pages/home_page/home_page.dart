@@ -3,7 +3,9 @@ Created by Axmadjon Isaqov on 16:57:04 16.07.2022
 © 2022 
 */
 ///[@axi_dev]
+import 'package:animation_last_lesson/page_transition/page_transition_widget.dart';
 import 'package:animation_last_lesson/pages/home_page/widgets/custom_container.dart';
+import 'package:animation_last_lesson/pages/moon_page/moon_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,7 +35,7 @@ class _HomePageState extends State<HomePage>
 
     _animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
-    _animationController!.repeat(reverse: true);
+
     super.initState();
   }
 
@@ -80,8 +82,13 @@ class _HomePageState extends State<HomePage>
     setState(() {});
   }
 
+  _navigateOtherPage() {
+    Navigator.of(context).push(CustomPageRouteBuilder(child: const MoonPage()));
+  }
+
   void _changePosition() {
     _isBig = !_isBig;
+
     setState(() {});
   }
 
@@ -90,10 +97,33 @@ class _HomePageState extends State<HomePage>
     print("build");
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0.0,
+        bottomOpacity: 0.0,
+        title: const Text("home page"),
+      ),
       body: _body,
-      floatingActionButton: FloatingActionButton(
-        onPressed: _changePosition,
-        child: const Icon(Icons.play_arrow),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            heroTag: 'float',
+            onPressed: () {
+              _animationController!.repeat(reverse: true);
+            },
+            child: const Icon(Icons.play_arrow),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          FloatingActionButton(
+            heroTag: 'float1',
+            onPressed: _navigateOtherPage,
+            child: const Icon(Icons.arrow_forward_ios),
+          )
+        ],
       ),
     );
   }

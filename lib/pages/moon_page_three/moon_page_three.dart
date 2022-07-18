@@ -1,23 +1,22 @@
 /*
-Created by Axmadjon Isaqov on 21:08:40 18.07.2022
+Created by Axmadjon Isaqov on 21:08:32 18.07.2022
 © 2022 @axi_dev 
 */
 import 'package:animation_last_lesson/page_transition/page_transition_widget.dart';
-import 'package:animation_last_lesson/pages/moon_page/moon_page.dart';
 import 'package:animation_last_lesson/pages/moon_page/widget/moon_widget.dart';
 import 'package:animation_last_lesson/pages/moon_page/widget/sun_widget.dart';
-import 'package:animation_last_lesson/pages/moon_page_three/moon_page_three.dart';
+import 'package:animation_last_lesson/pages/moon_page_two/moon_page_two.dart';
 import 'package:flutter/material.dart';
 
-class MoonPageTwo extends StatefulWidget {
-  static const String path = '/moon_two';
-  const MoonPageTwo({super.key});
+class MoonPageThree extends StatefulWidget {
+  static const String path = '/moon_three';
+  const MoonPageThree({super.key});
 
   @override
-  State<MoonPageTwo> createState() => _MoonPageTwoState();
+  State<MoonPageThree> createState() => _MoonPageThreeState();
 }
 
-class _MoonPageTwoState extends State<MoonPageTwo>
+class _MoonPageThreeState extends State<MoonPageThree>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Size? _size;
@@ -63,11 +62,7 @@ class _MoonPageTwoState extends State<MoonPageTwo>
 
   void _navigateToPage() {
     Navigator.of(context)
-        .push(CustomPageRouteBuilder(child: const MoonPageThree()));
-  }
-
-  _navigatePreviusOtherPage() {
-    Navigator.of(context).push(CustomPageRouteBuilder(child: const MoonPage()));
+        .push(CustomPageRouteBuilder(child: const MoonPageTwo()));
   }
 
   @override
@@ -77,34 +72,16 @@ class _MoonPageTwoState extends State<MoonPageTwo>
         centerTitle: true,
         elevation: 0.0,
         bottomOpacity: 0.0,
-        title: const Text("moon page two"),
+        title: const Text("moon page three"),
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          AnimatedCrossFade(
-            crossFadeState: _isNight!
-                ? CrossFadeState.showFirst
-                : CrossFadeState.showSecond,
-            firstCurve: Curves.linear,
-            secondCurve: Curves.linear,
-            firstChild: Container(
-              key: const ValueKey<String>('first'),
-              height: _size!.height,
-              width: _size!.width,
-              color: Colors.black,
-            ),
-            secondChild: Container(
-              key: const ValueKey<String>('second'),
-              height: _size!.height,
-              width: _size!.width,
-              color: Colors.white,
-            ),
-            duration: const Duration(milliseconds: 400),
-            reverseDuration: const Duration(milliseconds: 400),
-          ),
-          Stack(
-            fit: StackFit.expand,
+      body: AnimatedContainer(
+          height: _size!.height,
+          width: _size!.width,
+          curve: Curves.ease,
+          color: _isNight! ? Colors.black : Colors.white,
+          duration: const Duration(seconds: 2),
+          alignment: Alignment.center,
+          child: Stack(
             children: [
               AnimatedBuilder(
                 animation: _moonAnimation,
@@ -121,24 +98,23 @@ class _MoonPageTwoState extends State<MoonPageTwo>
                 ),
               ),
             ],
-          )
-        ],
-      ),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           FloatingActionButton(
-            heroTag: 'float9899',
-            onPressed: _navigatePreviusOtherPage,
-            child: const Icon(Icons.arrow_back_ios),
+            heroTag: 'float1465',
+            onPressed: _navigateToPage,
+            child: const Icon(Icons.arrow_back),
           ),
           const SizedBox(
             width: 10,
           ),
           FloatingActionButton(
-            heroTag: 'float35',
+            heroTag: 'float355',
             onPressed: () {
+              _changeDay;
               _controller.status == AnimationStatus.completed
                   ? _controller.reverse()
                   : _controller.forward();
@@ -147,14 +123,6 @@ class _MoonPageTwoState extends State<MoonPageTwo>
             },
             child: const Icon(Icons.play_arrow),
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            heroTag: 'float146',
-            onPressed: _navigateToPage,
-            child: const Icon(Icons.arrow_forward_ios),
-          )
         ],
       ),
     );

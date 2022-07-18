@@ -1,3 +1,7 @@
+/*
+Created by Axmadjon Isaqov on 21:09:14 18.07.2022
+© 2022 @axi_dev 
+*/
 import 'package:animation_last_lesson/consts/my_consts.dart';
 import 'package:flutter/material.dart';
 

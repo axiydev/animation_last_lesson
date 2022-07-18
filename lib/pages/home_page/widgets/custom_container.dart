@@ -1,3 +1,7 @@
+/*
+Created by Axmadjon Isaqov on 21:09:29 18.07.2022
+© 2022 @axi_dev 
+*/
 import 'package:flutter/material.dart';
 
 class CustomContainer extends StatelessWidget {

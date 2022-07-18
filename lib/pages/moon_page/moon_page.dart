@@ -1,5 +1,12 @@
+/*
+Created by Axmadjon Isaqov on 21:08:22 18.07.2022
+© 2022 @axi_dev 
+*/
+import 'package:animation_last_lesson/page_transition/page_transition_widget.dart';
+import 'package:animation_last_lesson/pages/home_page/home_page.dart';
 import 'package:animation_last_lesson/pages/moon_page/widget/moon_widget.dart';
 import 'package:animation_last_lesson/pages/moon_page/widget/sun_widget.dart';
+import 'package:animation_last_lesson/pages/moon_page_two/moon_page_two.dart';
 import 'package:flutter/material.dart';
 
 class MoonPage extends StatefulWidget {
@@ -35,16 +42,30 @@ class _MoonPageState extends State<MoonPage>
     super.dispose();
   }
 
+  void _navigateToPage() {
+    Navigator.of(context)
+        .push(CustomPageRouteBuilder(child: const MoonPageTwo()));
+  }
+
   get _changeDay {
     _isNight = !_isNight!;
     setState(() {});
   }
 
+  _navigatePreviusOtherPage() {
+    Navigator.of(context).push(CustomPageRouteBuilder(child: const HomePage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: AnimatedContainer(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0.0,
+          bottomOpacity: 0.0,
+          title: const Text("moon page"),
+        ),
+        body: AnimatedContainer(
           height: _size!.height,
           width: _size!.width,
           curve: Curves.ease,
@@ -60,11 +81,33 @@ class _MoonPageState extends State<MoonPage>
             ),
             child: _isNight! ? const MoonWidget() : const SunWidget(),
           ),
-        )),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () => _changeDay,
-          label: const Text("play"),
+        floatingActionButton: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FloatingActionButton(
+              heroTag: 'float989',
+              onPressed: _navigatePreviusOtherPage,
+              child: const Icon(Icons.arrow_back_ios),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            FloatingActionButton(
+              heroTag: 'float3',
+              onPressed: () => _changeDay,
+              child: const Icon(Icons.play_arrow),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            FloatingActionButton(
+              heroTag: 'float14',
+              onPressed: _navigateToPage,
+              child: const Icon(Icons.arrow_forward_ios),
+            )
+          ],
         ));
   }
 }

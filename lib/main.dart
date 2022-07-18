@@ -1,5 +1,10 @@
+/*
+Created by Axmadjon Isaqov on 21:08:49 18.07.2022
+© 2022 @axi_dev 
+*/
 import 'package:animation_last_lesson/pages/home_page/home_page.dart';
 import 'package:animation_last_lesson/pages/moon_page/moon_page.dart';
+import 'package:animation_last_lesson/pages/moon_page_three/moon_page_three.dart';
 import 'package:animation_last_lesson/pages/moon_page_two/moon_page_two.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +28,10 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.path: (context) => const HomePage(),
         MoonPage.path: (context) => const MoonPage(),
-        MoonPageTwo.path: (context) => const MoonPageTwo()
+        MoonPageTwo.path: (context) => const MoonPageTwo(),
+        MoonPageThree.path: (context) => const MoonPageThree()
       },
-      initialRoute: MoonPageTwo.path,
+      initialRoute: HomePage.path,
     );
   }
 }
